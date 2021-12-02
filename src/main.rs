@@ -1,6 +1,6 @@
 pub mod commands;
 
-use commands::{day0::Day0, CommandImpl, DynError};
+use commands::*;
 use enum_dispatch::enum_dispatch;
 
 use clap::Parser;
@@ -14,7 +14,9 @@ struct Opts {
 #[enum_dispatch(CommandImpl)]
 #[derive(Parser, Debug)]
 enum SubCommand {
-    Day0(Day0),
+    Day0(day0::Day0),
+    Day1(day1::Day1),
+    Day1b(day1b::Day1b),
 }
 fn main() -> Result<(), DynError> {
     let opts = Opts::parse();

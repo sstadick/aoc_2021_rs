@@ -18,6 +18,10 @@ impl CommandImpl for Day5a {
         let mut seen_points = HashMap::new();
 
         for line in lines.iter().filter(|l| l.is_horizontal() || l.is_vertical()) {
+            println!("{:?}", line);
+        }
+
+        for line in &lines {
             if line.is_horizontal() {
                 let mut x = line.start.x;
                 let y = line.start.y;
@@ -42,13 +46,14 @@ impl CommandImpl for Day5a {
                 }
             }
         }
-        println!("{:?}", seen_points);
         // count the number of keys that have counter of two
+        let mut total = 0;
         for (k, v) in seen_points.into_iter() {
             if v.counter >= 2 {
-                println!("{}, {:?}", k, v);
+                total += 1;
             }
         }
+        println!("Answer: {}", total);
         Ok(())
     }
 }
@@ -109,14 +114,19 @@ impl Line {
     fn new(start: Point, stop: Point) -> Self {
         let c_start = start.as_cantor_pairing();
         let c_stop = stop.as_cantor_pairing();
-        Self { start, stop, c_start, c_stop }
-    }
-
-    fn is_horizontal(&self) -> bool {
-        self.start.x == self.stop.x
+        // Force "sorted" order
+        if c_start < c_stop {
+            Self { start, stop, c_start, c_stop }
+        } else {
+            Self { start: stop, stop: start, c_start: c_stop, c_stop: c_start }
+        }
     }
 
     fn is_vertical(&self) -> bool {
+        self.start.x == self.stop.x
+    }
+
+    fn is_horizontal(&self) -> bool {
         self.start.y == self.stop.y
     }
 

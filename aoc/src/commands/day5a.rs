@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use std::{collections::HashMap, path::PathBuf, str::FromStr};
 
 use clap::Parser;
@@ -48,7 +49,7 @@ impl CommandImpl for Day5a {
         }
         // count the number of keys that have counter of two
         let mut total = 0;
-        for (k, v) in seen_points.into_iter() {
+        for (_k, v) in seen_points.into_iter() {
             if v.counter >= 2 {
                 total += 1;
             }

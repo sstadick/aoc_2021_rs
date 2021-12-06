@@ -36,3 +36,21 @@ where
     }
     Ok(result)
 }
+
+#[derive(Debug, Clone)]
+pub struct ParseError {
+    msg: String,
+}
+impl ParseError {
+    pub fn new(msg: String) -> Self {
+        Self { msg }
+    }
+}
+
+impl Error for ParseError {}
+
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Error for command: {}", self.msg)
+    }
+}

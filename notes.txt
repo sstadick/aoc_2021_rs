@@ -1,0 +1,30 @@
+Numbers 0-9 are made up of a set of letters {a-g}
+We find new sets of letters for each number 1, 4, 7, 8
+Can we then produce an exact mapping with just that info of new letters back to old letters?
+
+1 = {c, f}
+4 = {b, d, c, f}
+7 = {a, c, f}
+8 = {a, b, c, d, f, g}
+
+1 - 7       = `a`
+4 + `a`     -> 9
+9 - 8       = `e`
+9 - 1 + `e` -> 5
+9 - 5       = `c`
+5 + `e`     -> 6
+1 - `c`     = `f`
+4 - 9 - `a` = `g`
+
+---------------------
+
+8 - `b` - `f` = 2 
+8 - `b` - `e` = 3
+8 - `d` = 0
+
+1 - 4
+
+1 - 4 = bd
+
+need `d` and `b`
+
